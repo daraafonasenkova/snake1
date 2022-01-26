@@ -10,7 +10,7 @@ screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
 
 
-def message():
+def game_over():
     from Menu import print_text
     from Menu import Buttons
     from Menu import menu
@@ -50,6 +50,9 @@ def go_game():
     x1_change = 0
     y1_change = 0
 
+    foodx = random.randrange(0, 330)
+    foody = random.randrange(0, 370)  # генерация еды
+
     from Menu import menu
     run = True
     while run:
@@ -72,11 +75,11 @@ def go_game():
                     x1_change = 0
                 elif event.key == pygame.K_DOWN:
                     y1_change = 10
-                    x1_change = 0
+                    x1_change = 0  # управление змейкой
 
         if x1 >= 680 or x1 < 0 or y1 >= 700 or y1 < 0:
             run = False
-            message()
+            game_over()
 
         x1 += x1_change
         y1 += y1_change
@@ -85,11 +88,16 @@ def go_game():
 
         pygame.draw.rect(screen, (255, 199, 8),
                          (10, 60, 680, 700), 5)  # границы
+
         from Menu import input_name, print_text
         print_text(f"Игрок {input_name}", 20, 20, color=(255, 199, 8))
 
+
         pygame.draw.rect(screen, (142, 200, 62),
                          (x1, y1, 40, 40))  # змейка
+
+        pygame.draw.rect(screen, (243, 145, 28),
+                         (foodx, foody, 40, 40))  # еда для змейки
 
         pygame.display.update()
         clock.tick(30)
