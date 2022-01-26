@@ -1,4 +1,5 @@
 from Result import *
+from Game import go_game
 
 
 pygame.init()
@@ -80,6 +81,7 @@ def name_input():
                     need_input = False
                     zapis_name_base()
                     start_game()
+
                 elif event.key == pygame.K_BACKSPACE:
                     input_name = input_name[:-1]
                 else:
@@ -130,8 +132,12 @@ def start_game():
                     menu()
 
         screen.fill((242, 99, 55))
+
         pygame.draw.rect(screen, (255, 199, 8),
                          (10, 60, 680, 700), 5)
+
         print_text(f"Игрок {input_name}", 20, 20, color=(255, 199, 8))
+
         result_tabel.draw(430, 20, 'Посмотреть результаты', data_base, 20)
+        go_game()
         pygame.display.update()
