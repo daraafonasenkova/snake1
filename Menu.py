@@ -106,13 +106,14 @@ def name_input():
         clock.tick(60)
 
 def zapis_name_base():
+    from Game import scor
     con = sqlite3.connect("namesandresults.db")
     cur = con.cursor()
     res = cur.execute(
         '''SELECT * FROM results WHERE name LIKE ?''', (input_name,)).fetchall()
     if not res:
         res = cur.execute("""INSERT INTO results(name, result
-                           ) VALUES(?,?)""", (input_name, 0)).fetchall()
+                           ) VALUES(?,?)""", (input_name, scor)).fetchall()
     con.commit()
     con.close()
 

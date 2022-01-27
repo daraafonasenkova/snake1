@@ -49,7 +49,22 @@ def snake(list):
 
 
 
+scor = 0
+
+
+def score(sco):
+    from Menu import print_text
+    from Menu import input_name
+    print_text(f"Ваш счёт {sco}", 450, 20, color=(255, 199, 8))
+    con = sqlite3.connect("namesandresults.db")
+    cur = con.cursor()
+    res = cur.execute(
+        """UPDATE results SET result = ? WHERE name = ?""", (sco, input_name))
+    con.commit()
+    con.close()
+
 def go_game():
+    global score
     snake_speed = 30
 
     x1 = width / 2
@@ -119,7 +134,10 @@ def go_game():
                 run = False
                 game_over()
 
+
         snake(snake_list)
+        scor = lensnake - 1
+        score(scor)
 
         pygame.display.update()
 

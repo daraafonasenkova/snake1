@@ -46,22 +46,4 @@ def data_base():
         pygame.display.update()
 
 
-   # def basa(self):
-        #con = sqlite3.connect("nameandresult.db")
-        #cur = con.cursor()
-        #result = cur.execute(
-            #'''SELECT * FROM results WHERE name LIKE ?''', (name,)).fetchall()
-        #nikto, fails, wins = result[0][1], result[0][2], result[0][3]
-        #if not hand.cards:
-            #wins += 1
-        #elif not hand2.cards:
-            #fails += 1
-        #else:
-            #nikto += 1
-        #result = cur.execute("""UPDATE
-        #results SET number_nikto = ?, number_prongr = ?, number_of_wins = ?
-        #WHERE name = ?""", (nikto, fails, wins, name))
-        #con.commit()
-        # con.close()      запись результата игры
-
 
