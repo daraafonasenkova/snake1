@@ -28,8 +28,8 @@ def data_base():
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    from Menu import menu
-                    menu()
+                    from Game import game_over
+                    game_over()
         screen.fill((242, 99, 55))
         from Menu import print_text
         print_text('Имя             Счёт', 50, 10, color=(255, 199, 8), size=45)
