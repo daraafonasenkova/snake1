@@ -42,16 +42,27 @@ def game_over():
         pygame.display.update()
 
 
-def go_game():
+def snake(list):
+    for i in list:
+        pygame.draw.rect(screen, (142, 200, 62),
+                         (i[0], i[1], 40, 40))  # змейка
 
-    x1 = 330
-    y1 = 370
+
+
+def go_game():
+    snake_speed = 30
+
+    x1 = width / 2
+    y1 = height / 2
 
     x1_change = 0
     y1_change = 0
 
-    foodx = random.randrange(0, 330)
-    foody = random.randrange(0, 370)  # генерация еды
+    snake_list = []
+    lensnake = 1
+
+    foodx = round(random.randrange(20, width - 40) / 10.0) * 10.0
+    foody = round(random.randrange(100, width - 40) / 10.0) * 10.0  # генерация еды
 
     from Menu import menu
     run = True
@@ -92,12 +103,31 @@ def go_game():
         from Menu import input_name, print_text
         print_text(f"Игрок {input_name}", 20, 20, color=(255, 199, 8))
 
-
-        pygame.draw.rect(screen, (142, 200, 62),
-                         (x1, y1, 40, 40))  # змейка
-
         pygame.draw.rect(screen, (243, 145, 28),
                          (foodx, foody, 40, 40))  # еда для змейки
 
+
+        snake_head = []
+        snake_head.append(x1)
+        snake_head.append(y1)
+        snake_list.append(snake_head)
+        if len(snake_list) > lensnake:
+            del snake_list[0]
+
+        for x in snake_list[:-1]:
+            if x == snake_head:
+                run = False
+                game_over()
+
+        snake(snake_list)
+
         pygame.display.update()
-        clock.tick(30)
+
+        for i in range(int(foodx - 39), int(foodx + 39)):
+            for j in range(int(foody - 39), int(foody + 39)):
+                if x1 == i and y1 == j:
+                    foodx = round(random.randrange(20, width - 40) / 10.0) * 10.0
+                    foody = round(random.randrange(100, width - 40) / 10.0) * 10.0
+                    lensnake += 1
+
+        clock.tick(snake_speed)
