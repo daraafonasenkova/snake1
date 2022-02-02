@@ -1,5 +1,6 @@
 import pygame
 import sqlite3
+import sys
 
 
 pygame.init()
@@ -25,6 +26,7 @@ def data_base():
 
             if event.type == pygame.QUIT:
                 run = False
+                sys.exit()
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:

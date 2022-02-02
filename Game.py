@@ -1,5 +1,5 @@
 import random
-import pygame
+import sys
 from Result import *
 
 
@@ -25,6 +25,7 @@ def game_over():
 
             if event.type == pygame.QUIT:
                 run = False
+                sys.exit()
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:

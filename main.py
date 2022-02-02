@@ -1,5 +1,6 @@
 from Menu import *
 from Game import *
+import sys
 
 if __name__ == '__main__':
     menu()
@@ -16,6 +17,7 @@ def start_game():
 
             if event.type == pygame.QUIT:
                 run = False
+                sys.exit()
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:

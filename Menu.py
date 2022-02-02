@@ -1,5 +1,6 @@
 from Result import *
 from Game import go_game
+import sys
 
 
 pygame.init()
@@ -73,6 +74,7 @@ def name_input():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 show = False
+                sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     menu()
